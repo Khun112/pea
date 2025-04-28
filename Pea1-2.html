@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Bby 🩷</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('https://raw.githubusercontent.com/Khun112/pea/main/hello%20kitty%20bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      font-family: 'Comic Neue', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+    #password-section {
+      background:
+        linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)),
+        url('https://raw.githubusercontent.com/Khun112/pea/main/No1%20For%20passcode%20background.JPG');
+      background-size: cover;
+      background-position: center;
+      border-radius: 25px;
+      box-shadow: 0 0 24px 6px rgba(255, 192, 203, 0.8);
+      padding: 30px 20px;
+      width: 90%;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    #display {
+      background: rgba(255,255,255,0.95);
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      width: 80%;
+      font-size: 1.3em;
+      text-align: center;
+      letter-spacing: 6px;
+      font-family: inherit;
+      pointer-events: none;
+      color: #a259d9;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(162, 89, 217, 0.08);
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .keypad button {
+      background: #f3e6fa;
+      border: none;
+      border-radius: 8px;
+      padding: 18px 0;
+      font-size: 1.2em;
+      font-family: inherit;
+      color: #a259d9;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(162, 89, 217, 0.10);
+    }
+    .keypad button:active {
+      background: #e1c6f7;
+    }
+    #submit-btn {
+      background: #a259d9;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      width: 80%;
+      font-size: 1.1em;
+      margin-top: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(162, 89, 217, 0.14);
+    }
+    #submit-btn:active {
+      background: #7c3fa6;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.6);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #ff69b4;
+      margin-bottom: 20px;
+      font-size: 2.5em;
+    }
+    #image-container img {
+      max-width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .side-by-side-images {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+    .side-by-side-images img {
+      width: 48%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(255, 192, 203, 0.18);
+    }
+    .audio-player-container {
+      margin: 20px 0 10px 0;
+      background: #ffe4ef;
+      border-radius: 15px;
+      padding: 15px 10px;
+      box-shadow: 0 2px 8px rgba(255, 105, 180, 0.10);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    audio {
+      width: 100%;
+      outline: none;
+      accent-color: #ff69b4;
+      border-radius: 8px;
+      background: #fff0f7;
+    }
+    .motivation-stack img {
+      width: 90%;
+      max-width: 180px;
+      display: block;
+      margin: 12px auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(255,192,203,0.18);
+    }
+    .question-section {
+      margin-top: 30px;
+    }
+    .big-question {
+      font-size: 2em;
+      color: #ff69b4;
+      margin-bottom: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .choice-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .choice-buttons button {
+      background: #a259d9;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      padding: 18px 32px;
+      font-size: 1.3em;
+      margin: 0 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 2px 8px rgba(162, 89, 217, 0.16);
+    }
+    .choice-buttons button:active {
+      background: #7c3fa6;
+      transform: scale(0.96);
+    }
+    #love-answer {
+      font-size: 1.2em;
+      margin-top: 16px;
+      color: #ff69b4;
+      font-weight: bold;
+      min-height: 32px;
+    }
+    .purple-btn, .container button.purple-btn {
+      background: #a259d9 !important;
+      color: white !important;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      width: 80%;
+      font-size: 1.1em;
+      margin-top: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(162, 89, 217, 0.14);
+      display: inline-block;
+    }
+    .purple-btn:active, .container button.purple-btn:active {
+      background: #7c3fa6 !important;
+    }
+    @media (max-width: 600px) {
+      .side-by-side-images {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .side-by-side-images img {
+        width: 100%;
+        height: 160px;
+      }
+      .motivation-stack img {
+        max-width: 100%;
+        height: auto;
+      }
+      .choice-buttons {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .choice-buttons button {
+        width: 100%;
+        padding: 16px 0;
+        font-size: 1.1em;
+      }
+      .big-question {
+        font-size: 1.5em;
+      }
+    }
+    /* Make all Next buttons purple */
+    .container button:not(.choice-buttons button):not(.purple-btn) {
+      background: #a259d9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      width: 80%;
+      font-size: 1.1em;
+      margin-top: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(162, 89, 217, 0.14);
+    }
+    .container button:not(.choice-buttons button):not(.purple-btn):active {
+      background: #7c3fa6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Password Keypad Section -->
+<div id="password-section">
+  <input type="password" id="display" placeholder="Enter Passcode" readonly />
+  <div class="keypad">
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button onclick="clearDisplay()">←</button>
+    <button onclick="appendNumber('0')">0</button>
+    <button onclick="clearAll()">C</button>
+  </div>
+  <button id="submit-btn" onclick="checkPassword()">Submit</button>
+</div>
+
+<!-- Page 1: How We Met (Jett and Sage) -->
+<div class="container" id="content-section1" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/jett%20and%20sage%20home%20page%203.jpg" alt="How we met">
+  </div>
+  <p>This is how we met, me playing as Jett and you playing as Sage in the Split map. At that time, I kept blaming all the female players before I met someone special. 💖</p>
+  <button id="next-btn1">Next</button>
+</div>
+
+<!-- Page 2: First DC Conversation -->
+<div class="container" id="content-section2" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/first%20dc%20page%204.png" alt="First conversation on DC">
+  </div>
+  <p>This is our first conversation in DC and how we started chatting. I was really happy every time you invited me to play. 💖</p>
+  <button id="next-btn2">Next</button>
+</div>
+
+<!-- Page 3: Comparing Rooms -->
+<div class="container" id="content-section3" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/pea%20room%205th%20page.png" alt="My room" style="max-width: 45%; display: inline-block;">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/my%20room%205th%20page.png" alt="Her room" style="max-width: 45%; display: inline-block;">
+  </div>
+  <p>This is how we became friends and how I started to approach you. Hehe. 💖</p>
+  <button id="next-btn3">Next</button>
+</div>
+
+<!-- Page 4: Asking for Social Media -->
+<div class="container" id="new-content-section4" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/ask%20her%20tiktok.png" alt="How I started asking for social media">
+  </div>
+  <p>This is how I started asking for your social media. I wanted to ask, but I was also afraid that you might not want to give it to me. 💖</p>
+  <button id="next-btn4">Next</button>
+</div>
+
+<!-- Page 5: Watching Netflix Together -->
+<div class="container" id="content-section5" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/netflix%20tgt.png" alt="Our Netflix time">
+  </div>
+  <p>This is our Netflix that we watch together. I still remember the name of the drama-"Our Blues." We started watching it before we began dating, and we still haven't finished it yet. Hehe.</p>
+  <button id="next-btn5">Next</button>
+</div>
+
+<!-- Page 6: Asking for Telegram -->
+<div class="container" id="content-section6" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/ask%20tele%20from%20her.png" alt="Asking for Telegram">
+  </div>
+  <p>This is how I asked for your Telegram. After I got your Telegram, I started talking to you every single day, 24/7. 💖</p>
+  <button id="next-btn6">Next</button>
+</div>
+
+<!-- Page 7: Telegram Message and Voice -->
+<div class="container" id="content-section7" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/first%20tele%20message.png" alt="Our Telegram messages">
+  </div>
+  <div class="audio-player-container">
+    <audio controls>
+      <source src="https://raw.githubusercontent.com/Khun112/pea/main/first%20tele%20voice.ogg" type="audio/ogg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <p>This is how we started talking on Telegram. It's so funny that I began teaching you bad words in Korean, and I fell in love with your voice.</p>
+  <button id="next-btn7">Next</button>
+</div>
+
+<!-- Page 8: First "I love you" (image + voice) -->
+<div class="container" id="content-section8" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/first%20time%20i%20love%20you.png" alt="First time I said I love you">
+  </div>
+  <div class="audio-player-container">
+    <audio controls>
+      <source src="https://raw.githubusercontent.com/Khun112/pea/main/first%20time%20i%20love%20you%20voice.ogg" type="audio/ogg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <p>This is the first time I said "I love you" to you. My voice sounds so drunk, but I really loved you even back then.</p>
+  <button id="next-btn8">Next</button>
+</div>
+
+<!-- Page 9: First Trip Together -->
+<div class="container" id="content-section9" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/first%20vietnam%20trip.jpg" alt="Our first trip together">
+  </div>
+  <p>
+    This was our very first trip together, and our very first photo as a couple. I still remember how we both did everything we could to make our Vietnam adventure happen. Traveling with you is my favorite thing in the world-every journey with you is filled with laughter, love, and memories I'll cherish forever. No matter where we go, as long as I'm with you, I'm home. 💖
+  </p>
+  <button id="next-btn9">Next</button>
+</div>
+
+<!-- Page 10: Second Trip Thailand -->
+<div class="container" id="content-section10" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/second%20trip%20thailand.jpg" alt="Second trip Thailand">
+  </div>
+  <p>
+    Our second adventure together-this time a free trip for both of us, thanks to my parents! I still remember how you got a little upset because I didn’t buy you a Care Bear, but even those little moments are precious to me. Traveling with you makes every place more special, and seeing you smile is always my favorite part of every journey. 💖
+  </p>
+  <button id="next-btn10">Next</button>
+</div>
+
+<!-- Page 11: Bought Care Bears for Her -->
+<div class="container" id="content-section11" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/sencond%20trip%20care%20bears.jpg" alt="Bought Care Bears">
+  </div>
+  <p>
+    Of course, I could never let my girlfriend stay sad-so after our trip, I bought you not just one, but three Care Bears! Like the Care Bears, I always want to bring you comfort, happiness, and love. You deserve all the cuddles and kindness in the world! 🧸💖
+  </p>
+  <button id="next-btn11">Next</button>
+</div>
+
+<!-- Page 12: Having Bad Days (side by side images) -->
+<div class="container" id="content-section12" style="display:none;">
+  <div class="side-by-side-images">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/having%20bad%20days%201.jpg" alt="Having bad days 1">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/having%20bad%20days%202.jpg" alt="Having bad days 2">
+  </div>
+  <p>
+    I had a lot of bad days while we were dating. If I didn't have you, I honestly don't think I could have survived on my own. Your motivation and your help meant everything to me. I can never forget how much you supported me through it all. 💖
+  </p>
+  <button id="next-btn12">Next</button>
+</div>
+
+<!-- Page 13: Motivation & Support (stacked images) -->
+<div class="container" id="content-section13" style="display:none;">
+  <div class="motivation-stack" style="margin-bottom:18px;">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/moti.png" alt="Motivation 1">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/moti2.png" alt="Motivation 2">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/moti%203.png" alt="Motivation 3">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/moti%204.png" alt="Motivation 4">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/moti%205.png" alt="Motivation 5">
+  </div>
+  <p>
+    Every time I hear "bby can do it," "bby got money," or "bby want me to put money," everything feels so much easier. I will never forget all the ways you supported and motivated me, baby. Thank you for always being my biggest cheerleader. 💖
+  </p>
+  <button id="next-btn13">Next</button>
+</div>
+
+<!-- Page 14: Last Picture & Question -->
+<div class="container" id="content-section14" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/last%20picture%20ask.jpg" alt="Last page">
+  </div>
+  <p style="margin-top:20px;">
+    No matter if you still love me or not, I will always be your best Khun.<br>
+    I will never stop loving you, baby. I won’t give up on us, no matter what happens.<br>
+    Even if the world changes, even if everything falls apart, my love for you, PEA, will remain unshaken.<br><br>
+    You are the most precious part of my life, and nothing can ever replace you.<br>
+    Even if you push me away, even if you stop believing in us, I will still be here - loving you silently, faithfully, endlessly.
+  </p>
+  <div class="question-section" id="question-section">
+    <div class="big-question">baby still love me?</div>
+    <div class="choice-buttons" id="choice-buttons">
+      <button id="yes-btn" type="button">Yes</button>
+      <button id="no-btn" type="button">No</button>
+    </div>
+    <div id="love-answer"></div>
+  </div>
+</div>
+
+<!-- Page 15: Last Thank You -->
+<div class="container" id="content-section15" style="display:none;">
+  <div id="image-container">
+    <img src="https://raw.githubusercontent.com/Khun112/pea/main/last%20last.jpg" alt="Thank you">
+  </div>
+  <p style="margin-top:20px;">
+    Thank you for giving your time, baby.
+  </p>
+</div>
+
+<script>
+  let input = "";
+
+  function appendNumber(num) {
+    if (input.length < 4) {
+      input += num;
+      document.getElementById("display").value = input;
+    }
+  }
+  function clearDisplay() {
+    input = input.slice(0, -1);
+    document.getElementById("display").value = input;
+  }
+  function clearAll() {
+    input = "";
+    document.getElementById("display").value = "";
+  }
+  function checkPassword() {
+    const correctPassword = "8296";
+    if (input === correctPassword) {
+      document.getElementById("password-section").style.display = "none";
+      document.getElementById("content-section1").style.display = "block";
+    } else {
+      alert("Incorrect passcode! Please try again.");
+      clearAll();
+    }
+  }
+
+  window.onload = function() {
+    if(document.getElementById("next-btn1")) {
+      document.getElementById("next-btn1").onclick = function() {
+        document.getElementById("content-section1").style.display = "none";
+        document.getElementById("content-section2").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn2")) {
+      document.getElementById("next-btn2").onclick = function() {
+        document.getElementById("content-section2").style.display = "none";
+        document.getElementById("content-section3").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn3")) {
+      document.getElementById("next-btn3").onclick = function() {
+        document.getElementById("content-section3").style.display = "none";
+        document.getElementById("new-content-section4").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn4")) {
+      document.getElementById("next-btn4").onclick = function() {
+        document.getElementById("new-content-section4").style.display = "none";
+        document.getElementById("content-section5").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn5")) {
+      document.getElementById("next-btn5").onclick = function() {
+        document.getElementById("content-section5").style.display = "none";
+        document.getElementById("content-section6").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn6")) {
+      document.getElementById("next-btn6").onclick = function() {
+        document.getElementById("content-section6").style.display = "none";
+        document.getElementById("content-section7").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn7")) {
+      document.getElementById("next-btn7").onclick = function() {
+        document.getElementById("content-section7").style.display = "none";
+        document.getElementById("content-section8").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn8")) {
+      document.getElementById("next-btn8").onclick = function() {
+        document.getElementById("content-section8").style.display = "none";
+        document.getElementById("content-section9").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn9")) {
+      document.getElementById("next-btn9").onclick = function() {
+        document.getElementById("content-section9").style.display = "none";
+        document.getElementById("content-section10").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn10")) {
+      document.getElementById("next-btn10").onclick = function() {
+        document.getElementById("content-section10").style.display = "none";
+        document.getElementById("content-section11").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn11")) {
+      document.getElementById("next-btn11").onclick = function() {
+        document.getElementById("content-section11").style.display = "none";
+        document.getElementById("content-section12").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn12")) {
+      document.getElementById("next-btn12").onclick = function() {
+        document.getElementById("content-section12").style.display = "none";
+        document.getElementById("content-section13").style.display = "block";
+      };
+    }
+    if(document.getElementById("next-btn13")) {
+      document.getElementById("next-btn13").onclick = function() {
+        document.getElementById("content-section13").style.display = "none";
+        document.getElementById("content-section14").style.display = "block";
+      };
+    }
+
+    // Last page: Yes/No button logic
+    const yesBtn = document.getElementById("yes-btn");
+    const noBtn = document.getElementById("no-btn");
+    const loveAnswer = document.getElementById("love-answer");
+    const questionSection = document.getElementById("question-section");
+
+    if (yesBtn && noBtn && loveAnswer && questionSection) {
+      yesBtn.onclick = function() {
+        questionSection.innerHTML = `
+          <img src="https://raw.githubusercontent.com/Khun112/pea/main/last%20no.jpg" alt="Yes answer" style="width:90%;max-width:260px;border-radius:12px;box-shadow:0 2px 8px rgba(162,89,217,0.13);margin-bottom:18px;">
+          <div style="margin-bottom:20px;">
+            Hearing your "yes" means more to me than words can ever explain.<br>
+            bby, I love you with all of my heart and soul.<br>
+            I promise to keep loving you, not just today but every day for the rest of my life.<br>
+            I promise to protect your heart, to stand by you even in the toughest times, and to always make you feel safe and cherished.<br>
+            You are my dream come true, my once-in-a-lifetime love.<br>
+            Thank you for trusting me, for loving me, for believing in us.<br>
+            I will never take your love for granted.<br>
+            I will keep my promises, and I will love you even more than yesterday, and far more tomorrow.<br>
+            Together, no matter what happens, we will write a beautiful story that only belongs to us.
+          </div>
+          <button class="purple-btn" id="final-next-btn">Next</button>
+        `;
+        document.getElementById("final-next-btn").onclick = function() {
+          document.getElementById("content-section14").style.display = "none";
+          document.getElementById("content-section15").style.display = "block";
+        };
+      };
+      noBtn.onclick = function() {
+        questionSection.innerHTML = `
+          <img src="https://raw.githubusercontent.com/Khun112/pea/main/last%20yes.jpg" alt="No answer" style="width:90%;max-width:260px;border-radius:12px;box-shadow:0 2px 8px rgba(162,89,217,0.13);margin-bottom:18px;">
+          <div style="margin-bottom:20px;">
+            Even if your answer is no, my heart will not change.<br>
+            I will still be your best Khun - the one who loves you more deeply than anyone ever could.<br>
+            I made a promise in my heart to love you truly, and that promise won't break just because the road is difficult.<br>
+            Even if you can't love me right now, I will still pray for your happiness every day.<br>
+            I will never give up on you, PEA, because real love is not selfish.<br>
+            I love you for who you are, not just for how you make me feel.<br>
+            No matter where life takes us, a part of my heart will always belong to you - forever.
+          </div>
+          <button class="purple-btn" id="final-next-btn">Next</button>
+        `;
+        document.getElementById("final-next-btn").onclick = function() {
+          document.getElementById("content-section14").style.display = "none";
+          document.getElementById("content-section15").style.display = "block";
+        };
+      };
+    }
+  }
+</script>
+
+</body>
+</html>
